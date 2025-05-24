@@ -7,14 +7,22 @@
 - **🛡️ Weapon Detection**
   - Uses AI models to instantly identify weapons in surveillance footage.
   - Helps prevent escalation by alerting security in real time.
+<img width="1470" alt="Screenshot 2025-05-24 at 10 23 01 PM" src="https://github.com/user-attachments/assets/bf5e85c8-afba-4cec-b509-1a2e4c80a955" />
+<img width="1446" alt="Screenshot 2025-05-24 at 10 24 39 PM" src="https://github.com/user-attachments/assets/356506eb-2fce-4c34-88fc-a53d23e0b371" />
+
 
 - **🚨 Panic Detection**
   - Recognizes sudden distress gestures or unusual behavior patterns.
   - Ensures timely response from security or emergency teams.
+<img width="1231" alt="Screenshot 2025-05-24 at 10 26 41 PM" src="https://github.com/user-attachments/assets/209fd074-2e4b-4061-a765-20cbd97fec28" />
+
 
 - **📊 Centralized Dashboard**
   - Interactive platform for monitoring real-time data and analytics.
   - Visualizes system status, threat logs, and historical events.
+<img width="1470" alt="Screenshot 2025-05-24 at 10 25 43 PM" src="https://github.com/user-attachments/assets/fccfa6d0-35fb-4400-b844-d46fd88244a7" />
+<img width="1464" alt="Screenshot 2025-05-24 at 10 26 18 PM" src="https://github.com/user-attachments/assets/5b2e4fdd-f2d7-4b0a-8698-b621bc48320f" />
+
 
 - **⚠️ Instant Alerts**
   - Sends automatic alerts to authorities/security personnel.
