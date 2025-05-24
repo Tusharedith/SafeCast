@@ -1,0 +1,6 @@
+{
+    "motion_threshold": 693724.2,
+    "density_threshold": 25.527365451388889,
+    "panic_detection_frames": 30,
+    "flow_threshold": 1.1596832573413849
+}

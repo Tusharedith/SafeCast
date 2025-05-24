@@ -1,0 +1,489 @@
+{% extends "layout.html" %}
+{% block title %}SafeCast - Smart AI Security{% endblock %}
+{% block head %}
+{{ super() }}
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #10b981, #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.33);
+      opacity: 0.6;
+    }
+    80%, 100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+  
+  .feature-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .feature-card:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.3s ease-out;
+    opacity: 0;
+  }
+  
+  .feature-card:hover:before {
+    transform: scale(30);
+    opacity: 0.1;
+  }
+  
+  .feature-card:hover .feature-icon {
+    transform: scale(1.2);
+    color:rgb(199, 59, 246);
+  }
+  
+  .feature-icon {
+    transition: all 0.3s ease;
+  }
+  
+  .testimonial-card {
+    transition: all 0.3s ease;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stats-container {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(99, 102, 241, 0.05));
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden min-h-screen flex flex-col justify-center items-center px-4 py-20">
+  <!-- Enhanced Animated Background -->
+  <div class="absolute -z-10 w-[70vw] h-[70vw] bg-gradient-to-r from-blue-500 to-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse top-[-20%] left-[-10%]"></div>
+  <div class="absolute -z-10 w-[50vw] h-[50vw] bg-indigo-400 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-spin-slow top-[30%] right-[-15%]"></div>
+  <div class="absolute -z-10 w-[40vw] h-[40vw] bg-emerald-300 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse top-[60%] left-[-5%]"></div>
+  
+  <!-- Hero Content -->
+  <div class="max-w-6xl mx-auto text-center">
+    
+      
+    
+    <h1 class="text-5xl md:text-7xl text-center font-extrabold leading-tight mb-6 tracking-tight">
+      Elevate Your Safety with
+      <span class="gradient-text block mt-2">AI-Powered Surveillance</span>
+    </h1>
+    
+    <h2 data-aos="fade-up" class="text-lg md:text-xl max-w-2xl mx-auto font-light text-center mb-10 text-neutral-600">
+      Welcome to <span class="font-semibold text-neutral">SafeCast</span> — your personal smart security partner offering intelligent surveillance, anomaly detection, and real-time protection.
+    </h2>
+    
+    <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+      <a href="/signup" class="btn btn-outline btn-lg btn-wide transition-all duration-300 hover:scale-105 hover:bg-blue-100 group">
+        Get Started Free
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+      <a href="/video" class="btn btn-primary bg-gradient-to-r from-blue-600 to-indigo-500 btn-lg btn-wide border-none shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        Watch Demo
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </a>
+    </div>
+    
+    <!-- Floating Device Mockup -->
+    <div class="relative max-w-4xl mx-auto">
+      <div class="absolute inset-0 bg-blue-500 rounded-3xl opacity-5 blur-xl transform -rotate-1"></div>
+      <div class="absolute inset-0 bg-indigo-500 rounded-3xl opacity-5 blur-xl transform rotate-1"></div>
+     
+      <!-- Animated Detection Points -->
+      <div class="absolute top-1/4 left-1/4 w-6 h-6">
+        <div class="absolute inset-0 bg-green-500 rounded-full opacity-75"></div>
+        <div class="pulse-ring bg-green-500"></div>
+      </div>
+      <div class="absolute bottom-1/3 right-1/3 w-6 h-6">
+        <div class="absolute inset-0 bg-blue-500 rounded-full opacity-75"></div>
+        <div class="pulse-ring bg-blue-500"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Features Section -->
+<section class="py-24 px-4 container mx-auto">
+  <div class="text-center mb-16">
+    <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium text-sm mb-4">Features</span>
+    <h2 class="text-4xl font-bold mb-6">Intelligent Security Features</h2>
+    <p class="max-w-xl mx-auto text-neutral-600">Our AI-powered system continuously monitors your environment, providing you with real-time insights and security notifications.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {% set features = [
+		{'icon': 'fa-camera', 'title': 'Object Detection', 'desc': 'Identify and track objects in real-time within your environment, ensuring constant vigilance and awareness.'},
+		{'icon': 'fa-shield-halved', 'title': 'Anomaly Detection', 'desc': 'Continuously monitor your surroundings to automatically detect unusual behavior or security threats.'},
+		{'icon': 'fa-gauge-simple-high', 'title': 'Real-Time Alerts', 'desc': 'Get instant notifications on your device whenever a threat is identified—so you are never caught off guard.'},
+		{'icon': 'fa-chart-line', 'title': 'Analytics Dashboard', 'desc': 'Access comprehensive security analytics to understand patterns and improve your security posture.'},
+		{'icon': 'fa-cloud', 'title': 'Cloud Storage', 'desc': 'Securely store surveillance footage and reports in the cloud with encrypted access anywhere.'},
+		{'icon': 'fa-users', 'title': 'Multi-User Access', 'desc': 'Share access with family or team members to monitor activity collaboratively and securely.'}
+	  ] %}
+	  
+    
+    {% for feature in features %}
+    <div data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}" class="feature-card border rounded-3xl p-8 shadow-md bg-white">
+      <div class="feature-icon text-4xl text-blue-500 mb-6">
+        <i class="fa-solid {{ feature.icon }}"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-3">{{ feature.title }}</h3>
+      <p class="text-neutral-600">{{ feature.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-24 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium text-sm mb-4">How It Works</span>
+      <h2 class="text-4xl font-bold mb-6">Simple, Effective Security</h2>
+      <p class="max-w-xl mx-auto text-neutral-600">Our system integrates seamlessly with your existing cameras or our specialized hardware.</p>
+    </div>
+    
+    <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+      <div class="md:w-1/2">
+        <img src="{{ url_for('static', filename='security-process.png') }}" alt="How SafeCast Works" class="rounded-2xl shadow-xl"/>
+      </div>
+      <div class="md:w-1/2 space-y-8">
+        {% set steps = [
+          {'number': '01', 'title': 'Connect Your Cameras', 'desc': 'Integrate SafeCast with your existing security cameras or purchase our specialized hardware.'},
+          {'number': '02', 'title': 'AI Monitoring Begins', 'desc': 'Our AI immediately starts analyzing your video feeds for objects, anomalies, and potential threats.'},
+          {'number': '03', 'title': 'Get Real-Time Alerts', 'desc': 'Receive notifications on your devices whenever something unusual is detected.'},
+          {'number': '04', 'title': 'Review & Act', 'desc': 'Check the footage, take appropriate action, and improve your security over time.'}
+        ] %}
+        
+        {% for step in steps %}
+        <div class="flex items-start gap-6">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+            {{ step.number }}
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{{ step.title }}</h3>
+            <p class="text-neutral-600">{{ step.desc }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 stats-container">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {% set stats = [
+        {'number': '99.8%', 'label': 'Detection Accuracy'},
+        {'number': '24/7', 'label': 'Continuous Monitoring'},
+        {'number': '1s', 'label': 'Alert Response Time'},
+        {'number': '10K+', 'label': 'Protected Locations'}
+      ] %}
+      
+      {% for stat in stats %}
+      <div data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+        <div class="text-4xl font-bold text-blue-600 mb-2">{{ stat.number }}</div>
+        <div class="text-neutral-600 font-medium">{{ stat.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Demo Section -->
+<section class="py-24 px-4 container mx-auto">
+  <div class="text-center mb-16">
+    <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium text-sm mb-4">Demo</span>
+    <h2 class="text-4xl font-bold mb-6">See SafeCast in Action</h2>
+    <p class="max-w-xl mx-auto text-neutral-600">Experience how our AI detection system works in real-time environments.</p>
+  </div>
+
+  <div class="mockup-browser w-full border border-base-300 shadow-2xl">
+    <div class="mockup-browser-toolbar">
+      <div class="input border border-base-300 bg-neutral text-neutral-content">https://safecast.com/demo</div>
+    </div>
+    <div class="flex flex-col md:flex-row border-t items-center justify-between py-10 px-8 gap-8 bg-white">
+      <div class="w-full md:w-1/2 relative overflow-hidden rounded-lg shadow-lg">
+        <img class="w-full rounded-lg transition hover:scale-105 duration-500" src="{{ url_for('static', filename='1_c-ukJ0Sl2F-xX8JPdDPhoQ.png') }}" alt="Object Detection Demo" />
+        <!-- Animated overlay elements -->
+        <div class="absolute top-1/4 left-1/4 border-2 border-green-500 w-16 h-16 rounded-md bg-green-500 bg-opacity-20 flex items-center justify-center">
+          <span class="text-xs font-bold text-white bg-green-500 px-2 py-1 rounded">Person</span>
+        </div>
+        <div class="absolute bottom-1/3 right-1/3 border-2 border-blue-500 w-12 h-12 rounded-md bg-blue-500 bg-opacity-20 flex items-center justify-center">
+          <span class="text-xs font-bold text-white bg-blue-500 px-2 py-1 rounded">Bag</span>
+        </div>
+      </div>
+	  <div class="w-full md:w-1/2">
+		<div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-2xl shadow-2xl border border-gray-700">
+		  <h3 class="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+			📊 Real-Time Detection Stats
+		  </h3>
+	  
+		<div class="text-white text-sm mb-4">
+      <p>As the video plays, our AI detects objects and anomalies in real-time, providing you with instant insights.</p>
+      <img src="{{ url_for('static', filename='capboard.png') }}" alt="Real-Time Detection" class="rounded-lg shadow-lg w-1/2 mx-auto">
+    </div>
+      
+	  
+		  <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+			<div class="bg-gray-800 hover:bg-gray-700 transition-all px-5 py-3 rounded-xl text-white shadow-md">
+			  <span class="block text-sm font-medium opacity-75">Objects Detected</span>
+			  <span class="text-2xl font-semibold">14</span>
+			</div>
+			<div class="bg-gray-800 hover:bg-gray-700 transition-all px-5 py-3 rounded-xl text-white shadow-md">
+			  <span class="block text-sm font-medium opacity-75">Confidence Level</span>
+			  <span class="text-2xl font-semibold">98.4%</span>
+			</div>
+			<div class="bg-gray-800 hover:bg-gray-700 transition-all px-5 py-3 rounded-xl text-white shadow-md">
+			  <span class="block text-sm font-medium opacity-75">Processing Time</span>
+			  <span class="text-2xl font-semibold">0.2s</span>
+			</div>
+		  </div>
+		</div>
+	  
+	  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-24 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-medium text-sm mb-4">Testimonials</span>
+      <h2 class="text-4xl font-bold mb-6">What Our Users Say</h2>
+      <p class="max-w-xl mx-auto text-neutral-600">Join thousands of satisfied customers who trust SafeCast with their security needs.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {% set testimonials = [
+        {'name': 'Sarah Johnson', 'role': 'Small Business Owner', 'text': 'SafeCast has completely transformed how we approach security. The AI alerts have already prevented two break-in attempts.', 'avatar': 'avatar 1.jpeg'},
+        {'name': 'Michael Chen', 'role': 'IT Director', 'text': 'The accuracy of the detection system is impressive. Web have reduced false alarms by 90% since implementing SafeCast.', 'avatar': 'avatar 1.jpeg'},
+        {'name': 'Emily Rodriguez', 'role': 'Homeowner', 'text': 'Setting up SafeCast was incredibly easy. Now I can check on my home anytime, anywhere with real-time alerts that actually matter.', 'avatar': 'avatar 3.jpeg'}
+      ] %}
+      
+      {% for testimonial in testimonials %}
+      <div data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}" class="testimonial-card bg-white p-8 rounded-3xl shadow-md">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 overflow-hidden rounded-full">
+            <img src="{{ url_for('static', filename=testimonial.avatar) }}" alt="{{ testimonial.name }}" class="w-full h-full object-cover"/>
+          </div>
+          <div>
+            <h4 class="font-semibold">{{ testimonial.name }}</h4>
+            <p class="text-sm text-neutral-500">{{ testimonial.role }}</p>
+          </div>
+        </div>
+        <p class="text-neutral-600">{{ testimonial.text }}</p>
+        <div class="mt-6 text-yellow-400">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-24 px-4">
+  <div class="container mx-auto max-w-4xl relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 p-12 md:p-16 text-white text-center">
+    <!-- Abstract shapes -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+      <div class="absolute w-40 h-40 rounded-full bg-white top-0 left-0 transform -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute w-60 h-60 rounded-full bg-white bottom-0 right-0 transform translate-x-1/2 translate-y-1/2"></div>
+    </div>
+    
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Secure Your Space?</h2>
+    <p class="max-w-lg mx-auto mb-8 text-blue-100">Join thousands of businesses and homeowners who trust SafeCast for their security needs. Try it risk-free with our 30-day money-back guarantee.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/signup" class="btn btn-lg bg-white text-blue-600 hover:bg-blue-50 border-none">
+        Get Started Free
+      </a>
+      <a href="/contact" class="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-blue-600">
+        Contact Sales
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-neutral text-neutral-content">
+  <div class="container mx-auto p-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="md:col-span-1">
+        <svg width="50" height="50" fill="currentColor" class="mb-4" viewBox="0 0 24 24">
+          <path d="M22.672...z" />
+        </svg>
+        <h3 class="text-xl font-bold mb-4">SafeCast</h3>
+        <p class="text-sm leading-relaxed text-neutral-400 mb-6">Empowering homes and businesses with next-gen AI security surveillance solutions.</p>
+        <div class="flex gap-4 text-lg">
+          <a href="##" class="hover:text-white transition"><i class="fa-brands fa-github"></i></a>
+          <a href="##" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="##" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="##" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div>
+        <h6 class="footer-title">Product</h6>
+        <ul class="space-y-2">
+          <li><a href="/features" class="hover:text-white transition">Features</a></li>
+          <li><a href="/pricing" class="hover:text-white transition">Pricing</a></li>
+          <li><a href="/demo" class="hover:text-white transition">Demo</a></li>
+          <li><a href="/security" class="hover:text-white transition">Security</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h6 class="footer-title">Company</h6>
+        <ul class="space-y-2">
+          <li><a href="/about" class="hover:text-white transition">About Us</a></li>
+          <li><a href="/careers" class="hover:text-white transition">Careers</a></li>
+          <li><a href="/blog" class="hover:text-white transition">Blog</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h6 class="footer-title">Legal</h6>
+        <ul class="space-y-2">
+          <li><a href="/terms" class="hover:text-white transition">Terms of Service</a></li>
+          <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="/cookies" class="hover:text-white transition">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-neutral-700 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-sm text-neutral-400">© 2025 SafeCast. All rights reserved.</p>
+      <div class="flex gap-4 mt-4 md:mt-0">
+        <a href="/terms" class="text-sm text-neutral-400 hover:text-white transition">Terms</a>
+        <a href="/privacy" class="text-sm text-neutral-400 hover:text-white transition">Privacy</a>
+        <a href="/cookies" class="text-sm text-neutral-400 hover:text-white transition">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JS for Chart -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Person', 'Vehicle', 'Animal', 'Package', 'Unknown'],
+        datasets: [{
+          label: 'Detection Count',
+          data: [12, 8, 3, 5, 1],
+          backgroundColor: [
+            'rgba(59, 130, 246, 0.8)',
+            'rgba(16, 185, 129, 0.8)',
+            'rgba(99, 102, 241, 0.8)',
+            'rgba(236, 72, 153, 0.8)',
+            'rgba(249, 115, 22, 0.8)'
+          ],
+          borderWidth: 0,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        }
+      }
+    });
+    
+    // AOS initialization
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  });
+</script>
+
+{% endblock %}

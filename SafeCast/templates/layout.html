@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+	{% block head %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+	<title>{% block title %}{% endblock %}</title>
+	{% endblock %}
+
+	<!-- DaisyUI + Tailwind -->
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+
+	<!-- Fonts & Icons -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/cbae3ce0e6.js" crossorigin="anonymous"></script>
+
+	<!-- AOS (Animations) -->
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" />
+</head>
+
+<body class="relative font-[Poppins] bg-base-100">
+	<!-- Floating Chat -->
+	<div class="fixed bottom-4 right-4 z-50 max-w-sm w-full drop-shadow-lg backdrop-blur-md bg-base-200/80 rounded-xl">
+		<div class="collapse collapse-arrow">
+			<input type="checkbox" />
+			<div class="collapse-title flex items-center gap-2 text-base font-semibold">
+				<i class="fa-solid fa-robot text-primary text-xl"></i>
+				<span>Chat with <span class="font-bold text-primary">SafeCast</span></span>
+			</div>
+			<div class="collapse-content text-sm">
+				<div id="messageFormeight" class="mb-4 max-h-64 overflow-y-auto pr-1">
+					<div class="chat chat-end">
+						<div class="chat-bubble bg-primary text-white text-sm">Hello! I am SafeCast, your virtual assistant. How can I help you today?</div>
+					</div>
+				</div>
+				<form id="messageArea" class="flex gap-2 items-center">
+					<input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off"
+						class="input input-bordered w-full text-sm" required />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Drawer Layout -->
+	<div class="drawer">
+		<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+		<div class="drawer-content flex flex-col">
+			<!-- Navbar -->
+			<div class="fixed top-0 z-30 w-full p-4 backdrop-blur-md">
+				<div class="navbar bg-base-200 shadow-xl rounded-2xl px-4 py-2">
+					<div class="flex-none lg:hidden">
+						<label for="my-drawer-3" class="btn btn-square btn-ghost">
+							<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+								stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M4 6h16M4 12h16M4 18h16" />
+							</svg>
+						</label>
+					</div>
+					<div class="flex-1 px-2 mx-2 font-bold text-lg">
+						<a href="{{ url_for('index') }}" class="btn btn-sm btn-ghost gap-2">
+							<img src="{{ url_for('static', filename='logo.svg') }}" class="w-8 h-8" alt="logo" />
+							<span>SafeCast</span>
+						</a>
+					</div>
+					<div class="flex-none hidden lg:block">
+						<ul class="menu menu-horizontal px-1">
+							<li><a href="{{ url_for('video') }}" class="hover:bg-primary hover:text-white">Camera Feed</a></li>
+							<li><a href="{{ url_for('dashboard') }}" class="hover:bg-primary hover:text-white">Dashboard</a></li>
+							<li><a href="{{ url_for('panic_detection') }}" class="hover:bg-primary hover:text-white">Panic Detection</a></li>
+							<li><a href="{{ url_for('profile') }}" class="hover:bg-primary hover:text-white">Profile</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Page Content -->
+			<div id="content" class="pt-24 px-4 z-0">{% block content %}{% endblock %}</div>
+		</div>
+
+		<!-- Drawer Sidebar -->
+		<div class="drawer-side z-40">
+			<label for="my-drawer-3" class="drawer-overlay"></label>
+			<ul class="menu p-4 w-80 min-h-full bg-base-200 pt-8 space-y-2">
+				<div class="flex items-center justify-center pb-6 border-b border-neutral mb-4">
+					<div class="avatar placeholder">
+						<div class="bg-base-300 border border-neutral rounded-full w-20">
+							<span class="text-2xl uppercase">c</span>
+						</div>
+					</div>
+				</div>
+				<li><a href="{{ url_for('profile') }}" class="hover:bg-primary hover:text-white">Profile</a></li>
+				<li><a href="{{ url_for('video') }}" class="hover:bg-primary hover:text-white">Camera Feed</a></li>
+				<li><a href="{{ url_for('dashboard') }}" class="hover:bg-primary hover:text-white">Dashboard</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- AOS & Chat Scripts -->
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init({ duration: 1000, once: true });
+	</script>
+	<script>
+		const messageForm = document.getElementById("messageFormeight");
+		const messageArea = document.getElementById("messageArea");
+		const text = document.getElementById("text");
+
+		messageArea.addEventListener("submit", (e) => {
+			e.preventDefault();
+			const message = text.value.trim();
+			if (!message) return;
+
+			const userMsg = document.createElement("div");
+			userMsg.className = "chat chat-start";
+			userMsg.innerHTML = `<div class="chat-bubble bg-base-300 text-sm">${message}</div>`;
+			messageForm.appendChild(userMsg);
+			text.value = "";
+			messageForm.scrollTop = messageForm.scrollHeight;
+
+			fetch("/chat", {
+				method: "POST",
+				body: new URLSearchParams({ msg: message })
+			})
+				.then((res) => res.text())
+				.then((data) => {
+					const botMsg = document.createElement("div");
+					botMsg.className = "chat chat-end";
+					botMsg.innerHTML = `<div class="chat-bubble bg-primary text-white text-sm">${data}</div>`;
+					messageForm.appendChild(botMsg);
+					messageForm.scrollTop = messageForm.scrollHeight;
+				})
+				.catch((err) => console.error("Chat error:", err));
+		});
+	</script>
+</body>
+
+</html>

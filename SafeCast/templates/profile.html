@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block title %}SafeCast - Profile{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style>
+    @keyframes slideInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.5; }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="p-8 min-h-screen bg-white flex items-center justify-center bg-gradient-to-r from-blue-200 to-green-300">
+  <div class="w-full max-w-5xl mx-auto text-center animate-[slideInUp_0.8s_ease-out]">
+    <div class="mb-8">
+
+      <div class="relative inline-block mb-6">
+        <div class="w-30 h-30 rounded-full bg-gradient-to-br  text-white flex items-center justify-center text-5xl font-bold  animate-pulse relative">
+          <div class="mb-6 relative w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-xl">
+      {{ user['displayName'][0] }}
+      <span class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full animate-ping"></span>
+    </div>
+          <div class="absolute w-6 h-6 bg-emerald-500 border-4 border-white rounded-full bottom-1 right-1 animate-[blink_1s]"></div>
+          <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600opacity-30 z-[-1] animate-[rotate_5s_linear_infinite]"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-2xl font-light text-gray-800 mb-2">Welcome back,</div>
+    <div class="text-4xl font-extrabold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent animate-[shimmer_3s_infinite]">
+      {{ user['displayName'] }}
+    </div>
+    <div class="mt-2 mb-8 inline-block px-6 py-3 text-lg bg-indigo-100 border border-indigo-200 rounded-full text-gray-600">
+      {{ user['email'] }}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-10">
+      <div class="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 hover:bg-indigo-100 hover:shadow-xl transition cursor-pointer">
+        <div class="text-3xl mb-2">🔍</div>
+        <div class="font-semibold text-gray-700 mb-1">
+		<a href={{ url_for('video') }}>Weapon & Threat Detection</a>
+		</div>
+        <div class="text-sm text-gray-500">AI-powered detection of dangerous tools with instant alerts</div>
+      </div>
+      <div class="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 hover:bg-indigo-100 hover:shadow-xl transition cursor-pointer">
+        <div class="text-3xl mb-2">🚨</div>
+        <div class="font-semibold text-gray-700 mb-1">
+			<a href="{{ url_for('panic_detection') }}">	Panic Crowd Monitoring</a></div>
+        <div class="text-sm text-gray-500">Real-time crowd movement analysis and density monitoring</div>
+      </div>
+      <div class="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 hover:bg-indigo-100 hover:shadow-xl transition cursor-pointer">
+        <div class="text-3xl mb-2">🔐</div>
+        <div class="font-semibold text-gray-700 mb-1">Secure Dataset Integration</div>
+        <div class="text-sm text-gray-500">Custom watchlist uploads for adaptive security systems</div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4 justify-center">
+      <button onclick="alert('Edit profile functionality would be implemented here!')" class="btn text-white bg-gradient-to-br from-indigo-500 to-purple-600 font-semibold py-3 px-6 rounded-xl shadow-lg hover:-translate-y-1 transition">
+        Edit Profile
+      </button>
+      <a href="/signout" class="btn text-indigo-600 bg-indigo-100 border border-indigo-200 font-semibold py-3 px-6 rounded-xl hover:bg-indigo-200 transition">
+        Sign Out
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

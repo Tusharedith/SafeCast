@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detected Harmful Tool Video</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+  <div class="bg-white p-6 rounded-xl shadow-xl">
+    <h1 class="text-2xl font-bold mb-4 text-center text-red-600">Harmful Tool Detected</h1>
+    <p class="mb-4 text-gray-700 text-center">Captured Evidence Video</p>
+
+    {% if video_url %}
+    <video class="rounded-lg border border-gray-400" controls>
+        <source src="{{ video_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% else %}
+    <p class="text-gray-500">No video found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

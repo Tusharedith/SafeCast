@@ -1,0 +1,19 @@
+{
+    "alert_id": "panic_alert_2025-05-03_12-18-26",
+    "alert_type": "panic_crowd",
+    "timestamp": "2025-05-03_12-18-26",
+    "camera_id": 0,
+    "evidence_path": "evidence/panic_alert_2025-05-03_12-18-26.jpg",
+    "metadata": {
+        "motion_level": 95963.0,
+        "density_percentage": 31.237955729166668,
+        "avg_speed": 8.967792510986328,
+        "is_divergent": false,
+        "direction_counts": {
+            "up": 1,
+            "down": 0,
+            "left": 0,
+            "right": 0
+        }
+    }
+}
