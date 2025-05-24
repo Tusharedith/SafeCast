@@ -1,8 +1,7 @@
 [tool.poetry]
-name = "suraksha"
+name = "SafeCast"
 version = "1.0.0"
-description = "SuRक्षा provides smart security surveillance solutions such as face recognition, object detection, and more."
-authors = ["ChiragAgg5k <110609663+ChiragAgg5k@users.noreply.github.com>"]
+authors = ["Tusharedith <https://github.com/Tusharedith>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
