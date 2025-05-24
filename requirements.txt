@@ -16,5 +16,4 @@ python-dotenv==1.0.1
 openai==1.40.1
 face_recognition
 firebase-admin==6.5.0
-dlib==19.24.0 --only-binary dlib
 
