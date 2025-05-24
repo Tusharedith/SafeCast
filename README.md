@@ -8,8 +8,6 @@
   - Uses AI models to instantly identify weapons in surveillance footage.
   - Helps prevent escalation by alerting security in real time.
 <img width="1470" alt="Screenshot 2025-05-24 at 10 23 01 PM" src="https://github.com/user-attachments/assets/bf5e85c8-afba-4cec-b509-1a2e4c80a955" />
-<img width="1446" alt="Screenshot 2025-05-24 at 10 24 39 PM" src="https://github.com/user-attachments/assets/356506eb-2fce-4c34-88fc-a53d23e0b371" />
-
 
 - **🚨 Panic Detection**
   - Recognizes sudden distress gestures or unusual behavior patterns.
