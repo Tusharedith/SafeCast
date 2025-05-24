@@ -32,7 +32,7 @@
 - **Frontend:** React / HTML5 / Tailwind CSS
 - **AI Models:** YOLO, OpenCV, TensorFlow, Custom Pose Estimation
 - **Database:** MongoDB / Firebase
-- **Deployment:** Docker, AWS/GCP, Firebase Hosting
+- **Deployment:** Docker, AWS/GCP, Firebase Hosting ,Vercel
 
 ## 🛠 Installation
 
