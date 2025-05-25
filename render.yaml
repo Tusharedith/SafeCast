@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: safecast
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    autoDeploy: true
