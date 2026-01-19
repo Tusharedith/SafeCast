@@ -11,7 +11,7 @@
 
 - **🚨 Panic Detection**
   - Recognizes sudden distress gestures or unusual behavior patterns.
-  - Ensures timely response from security or emergency teams.
+  - Ensures timely response from security guard or emergency teams.
 <img width="1231" alt="Screenshot 2025-05-24 at 10 26 41 PM" src="https://github.com/user-attachments/assets/209fd074-2e4b-4061-a765-20cbd97fec28" />
 
 
